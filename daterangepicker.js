@@ -75,6 +75,8 @@
             applyLabel: 'Apply',
             cancelLabel: 'Cancel',
             weekLabel: 'W',
+            amString: 'AM',
+            pmString: 'PM',
             customRangeLabel: 'Custom Range',
             daysOfWeek: moment.weekdaysMin(),
             monthNames: moment.monthsShort(),
@@ -159,6 +161,13 @@
                 var rangeHtml = elem.value;
                 this.locale.customRangeLabel = rangeHtml;
             }
+
+            if (typeof options.locale.amString === 'string')
+                this.locale.amString = options.locale.amString;
+
+            if (typeof options.locale.pmString === 'string')
+                this.locale.pmString = options.locale.pmString;
+
         }
         this.container.addClass(this.locale.direction);
 
@@ -999,9 +1008,9 @@
                     pm_html = ' disabled="disabled" class="disabled"';
 
                 if (selected.hour() >= 12) {
-                    html += '<option value="AM"' + am_html + '>AM</option><option value="PM" selected="selected"' + pm_html + '>PM</option>';
+                    html += '<option value="AM"' + am_html + '>' + this.locale.amString + '</option><option value="PM" selected="selected"' + pm_html + '>' + this.locale.pmString + '</option>';
                 } else {
-                    html += '<option value="AM" selected="selected"' + am_html + '>AM</option><option value="PM"' + pm_html + '>PM</option>';
+                    html += '<option value="AM" selected="selected"' + am_html + '>' + this.locale.amString + '</option><option value="PM"' + pm_html + '>' + this.locale.pmString + '</option>';
                 }
 
                 html += '</select>';
